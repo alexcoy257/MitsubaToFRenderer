@@ -559,7 +559,7 @@ Float ContinuousSpectrum::average(Float lambdaMin, Float lambdaMax) const {
 
 	for (size_t i=0; i<nSteps; ++i) {
 		integral += integrator.integrate(
-			boost::bind(&ContinuousSpectrum::eval, this, _1),
+			boost::bind(&ContinuousSpectrum::eval, this, boost::placeholders::_1),
 			pos, pos + stepSize);
 		pos += stepSize;
 	}

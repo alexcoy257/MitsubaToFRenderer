@@ -96,13 +96,13 @@ public:
 
 			Float min[2] = {0, 0}, max[2] = {1, 1};
 			intTransmittance.integrateVectorized(
-				boost::bind(&transmittanceIntegrand, bsdf, wi, _1, _2, _3),
+				boost::bind(&transmittanceIntegrand, bsdf, wi, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3),
 				min, max, &transmittances[i], &error, NULL);
 		}
 
 		Float min[1] = { 0 }, max[1] = { 1 };
 		intDiffTransmittance.integrateVectorized(
-			boost::bind(&diffTransmittanceIntegrand, transmittances, resolution, _1, _2, _3),
+			boost::bind(&diffTransmittanceIntegrand, transmittances, resolution, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3),
 			min, max, &diffTrans, &error, NULL);
 
 		if (alpha == 0.0f)
